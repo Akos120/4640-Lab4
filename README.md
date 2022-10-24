@@ -1,0 +1,1 @@
+Ubuntu 22.04 and Rocky 9 setup in Digital Ocean
