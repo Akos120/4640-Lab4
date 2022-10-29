@@ -4,7 +4,17 @@
   become_user: root
   tasks:
     - name: installing podman
+      become: true
       package:
         name: podman
         state: present
+    - name: pulling image
+      podman_image:
+        name: docker.io/httpd
+        tag: 2-alpine
+    - name: creating container
+      containers.podman.podman_container:
+        name: container_one
+        image: docker.io/httpd:2-alpine
+        state: started
 ... 
