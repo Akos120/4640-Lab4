@@ -1,0 +1,38 @@
+---
+- name: create user
+  hosts: webservers
+  tasks:
+    - name: create user in ubuntu
+      user:
+        name: ansible_user
+        shell: /bin/bash
+        create_home: yes
+        home: /home/ansible_user
+        groups: sudo
+        append: yes
+        state: present
+        system: no
+      when: ansible_distribution in ["Ubuntu"]
+
+    - name: create user in rocky
+      user:
+        name: ansible_user
+        shell: /bin/bash
+        create_home: yes
+        home: /home/ansible_user
+        groups: wheel
+        append: yes
+        state: present
+        system: no
+      when: ansible_distribution in ["Rocky"]
+
+    - name: copy .ssh directory over
+      copy: 
+        remote_src: yes
+        src: /root/.ssh/
+        dest: /home/ansible_user/.ssh/
+        owner: ansible_user
+        group: ansible_user
+        mode: preserve
+
+...

@@ -1,0 +1,10 @@
+---
+- name: setup podman
+  hosts: podman
+  become_user: root
+  tasks:
+    - name: installing podman
+      package:
+        name: podman
+        state: present
+... 
