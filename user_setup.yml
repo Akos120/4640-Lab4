@@ -5,6 +5,7 @@
     - name: create user in ubuntu
       user:
         name: ansible_user
+        password: "{{ 'password' | password_hash('sha512') }}"
         shell: /bin/bash
         create_home: yes
         home: /home/ansible_user
