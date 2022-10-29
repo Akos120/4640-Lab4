@@ -36,5 +36,17 @@
         owner: ansible_user
         group: ansible_user
         mode: preserve
-
+        
+    - name: disable root access to ssh
+      become: true
+      replace:
+        path: /etc/ssh/sshd_config
+        regexp: "#PermitRootLogin yes"
+        replace: "PermitRootLogin no"
+    
+     - name: restart sshd
+       become: true
+       service:
+         name: sshd
+         state: restarted
 ...
