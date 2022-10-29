@@ -11,7 +11,7 @@ ansible -m ping -u root all -i <private key>
 ```bash
 ansible-inventory --graph
 ```
-![screenshot] (image1.png)
+![screenshot](image1.png)
 
 5. Run the nginx and user creation playbooks with the command:
 ```bash
